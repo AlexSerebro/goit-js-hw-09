@@ -30,3 +30,27 @@ img {
   border-radius: 6px;
   margin-right: 20px;
 }
+
+.timer {
+  display: flex;
+}
+
+span {
+  display: block;
+}
+
+.field {
+  margin-right: 20px;
+}
+
+.value {
+  font-size: 30px;
+}
+
+.input-timer {
+  font-size: 30px;
+}
+
+.btn-timer {
+  font-size: 30px;
+}
