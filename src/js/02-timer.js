@@ -46,13 +46,14 @@ function startTimer() {
   const intervalId = setInterval(() => {
     const currentTime = Date.now();
     const deltaTime = selectDate - currentTime;
-    const { days, hours, minutes, seconds } = convertMs(deltaTime);
-    refs.days.textContent = days;
-    refs.hours.textContent = hours;
-    refs.minutes.textContent = minutes;
-    refs.seconds.textContent = seconds;
+
     disableStartBtn();
-    if (days && hours && minutes && seconds <= 0) {
+    if (deltaTime > 0) {
+      const { days, hours, minutes, seconds } = convertMs(deltaTime);
+      updateTimer({ days, hours, minutes, seconds });
+      // clearInterval(intervalId);
+    } else {
+      Notiflix.Report.success('TIME to BUY');
       clearInterval(intervalId);
     }
   }, 1000);
@@ -86,4 +87,11 @@ function convertMs(ms) {
 
 function pad(value) {
   return String(value).padStart(2, '0');
+}
+
+function updateTimer({ days, hours, minutes, seconds }) {
+  refs.days.textContent = `${days}`;
+  refs.hours.textContent = `${hours}`;
+  refs.minutes.textContent = `${minutes}`;
+  refs.seconds.textContent = `${seconds}`;
 }
